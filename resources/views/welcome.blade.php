@@ -1,45 +1,32 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Laravel</title>
+@extends('layouts.app')
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <h1 class="text-center">LitecoinPledge</h1>
+            <p>Welcome to LitecoinPledge. The best way to support community-funded projects
+            with both recurring Litecoin payments, and one-time payments.</p>
+            <p>Project ownership is verified by moderators to protect against people taking
+            ownership of other peoples projects.</p>
+            <h2 class="text-center">Top Projects</h2>
+            @foreach($top_projects as $p)
+                <div class="col-md-4">
+                    <div class="well top-project">
+                        <div class="text-center">
+                            <img src="{{ $p->project_img }}" alt="Project Image">
 
-        <style>
-            html, body {
-                height: 100%;
-            }
+                            <p>{{ $p->name }}</p>
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
+                            <p>Total: <strong>{{ number_format($p->total_pledged, 2) }}</strong> LTC</p>
 
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
+                        </div>
 
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
 
-            .title {
-                font-size: 96px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Laravel 5</div>
-            </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
-    </body>
-</html>
+    </div>
+</div>
+@endsection

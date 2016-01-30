@@ -19,3 +19,13 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Project::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->company,
+        'verified' => rand(0,1),
+        'description' => $faker->text,
+        'total_pledged' => rand(0,10000) / 100,
+        'user_id' => rand(0,10)
+    ];
+});
