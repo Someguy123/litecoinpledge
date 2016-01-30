@@ -5,3 +5,5 @@ Homestead.json
 .env
 /.idea
 /public/build
+/storage/debugbar/*
+_ide_helper.php

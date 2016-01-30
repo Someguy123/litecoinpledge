@@ -18,8 +18,10 @@ class CreateTableProjects extends Migration
             $table->string('project_img')->default('/assets/img/default.png');
             $table->text('description');
             $table->decimal('total_pledged', 16, 8);
+            $table->decimal('project_balance', 16, 8);
             $table->integer('user_id');
             $table->integer('verified')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

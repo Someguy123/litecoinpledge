@@ -29,6 +29,9 @@ Route::group(['middleware' => ['web']], function () {
         $top_projects = App\Project::limit(6)->orderBy('total_pledged', 'desc')->get();
         return view('welcome', compact('top_projects'));
     });
+
+    Route::get('projects/{project}', 'ProjectController@show')->where('project', '[0-9]+');
+    Route::resource('projects', 'ProjectController');
 });
 
 Route::group(['middleware' => 'web'], function () {

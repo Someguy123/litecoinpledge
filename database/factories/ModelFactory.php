@@ -20,12 +20,20 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+
 $factory->define(App\Project::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->company,
-        'verified' => rand(0,1),
+        'verified' => rand(0, 1),
         'description' => $faker->text,
-        'total_pledged' => rand(0,10000) / 100,
-        'user_id' => rand(0,10)
+        'total_pledged' => rand(0, 10000) / 100,
+        'user_id' => rand(0, 10)
+    ];
+});
+$factory->define(App\UserPledge::class, function (Faker\Generator $faker) {
+    return [
+        'project_id' => rand(0,10),
+        'amount' => rand(0, 10000) / 100,
+        'user_id' => rand(0, 10)
     ];
 });
