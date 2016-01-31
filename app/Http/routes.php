@@ -37,12 +37,18 @@ Route::group(['middleware' => ['web']], function () {
         return view('welcome', compact('top_projects'));
     });
 
-    Route::group(['path' => '/account'], function() {
-        Route::get('account', function(Request $r) {
+    Route::group(['prefix' => 'account'], function() {
+        Route::get('/', function(Request $r) {
             $user_pledges = $r->user()->u_pledges()->with('project')->get();
             $user = auth()->user();
             return view('account', compact('user_pledges', 'user'));
         });
+    });
+    Route::group(['prefix' => 'wallet'], function() {
+        Route::post('withdraw', 'WalletController@withdraw');
+        Route::get('generate', 'WalletController@generate');
+        Route::get('release/{key}', 'WalletController@confirm');
+        Route::get('cancel/{key}', 'WalletController@cancel');
     });
 
     Route::get('projects/{project}/pledge', function(Request $r, \App\Project $project) {
@@ -57,7 +63,8 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::post('projects/{project}/pledge', 'PledgeController@createPledge');
-
+    Route::get('projects/{project}/send_pledge', 'PledgeController@sendPledge');
+    Route::post('/projects/{project}/withdraw', 'ProjectController@withdraw');
     Route::post('projects/{project}/verify', 'ProjectController@verify');
     Route::get('projects/{project}', 'ProjectController@show')->where('project', '[0-9]+');
     Route::delete('projects/{project}', 'ProjectController@destroy')->where('project', '[0-9]+');

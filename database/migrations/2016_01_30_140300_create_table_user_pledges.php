@@ -18,6 +18,8 @@ class CreateTableUserPledges extends Migration
             $table->integer('project_id')->index();
             $table->decimal('amount', 16, 8)->index();
             $table->dateTime('last_pledge')->index();
+            // last time we emailed them about their pledge
+            $table->dateTime('last_email')->index();
             $table->string('frequency')->default('monthly');
             $table->timestamps();
             $table->softDeletes();

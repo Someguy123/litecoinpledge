@@ -6,6 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
+/**
+ * App\Project
+ *
+ * @property-read mixed $monthly_pledged
+ * @property-read mixed $monthly_users
+ * @property integer $id
+ * @property string $name
+ * @property string $ltc_address
+ * @property string $project_img
+ * @property string $description
+ * @property float $total_pledged
+ * @property float $project_balance
+ * @property integer $user_id
+ * @property integer $verified
+ * @property \Carbon\Carbon $deleted_at
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ */
 class Project extends Model
 {
     use SoftDeletes;

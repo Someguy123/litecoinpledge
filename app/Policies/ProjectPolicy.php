@@ -30,4 +30,9 @@ class ProjectPolicy
         return $user->owns($project)
             || $user->is_mod();
     }
+
+    public function withdraw(User $user, Project $project)
+    {
+        return $user->owns($project);
+    }
 }

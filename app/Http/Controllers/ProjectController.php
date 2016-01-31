@@ -25,7 +25,11 @@ class ProjectController extends Controller
     }
     function store(ProjectRequest $r) {
         $project = new Project($r->only('name', 'description'));
+        $project->user_id = $r->user()->id;
         $project->save();
+        if(!WalletController::generateAddress($project, true)) {
+            return redirect()->back()->withErrors("Sorry. The address pool is low, so we were unable to create your project at this time. Try again in an hour");
+        }
         return redirect('/projects/'.$project->id);
     }
     function show(Project $project) {
@@ -35,6 +39,24 @@ class ProjectController extends Controller
         $this->authorize('destroy', $project);
         $project->delete();
         return redirect('/projects')->with('status', 'Project deleted');
+    }
+    function withdraw(Request $r, Project $project) {
+        $this->authorize('withdraw', $project);
+        app('db')->transaction(function() use($project, $r, &$response) {
+            // for safety, we lock the balance
+            $p = app('db')->table('projects')->where('id', $project->id)->lockForUpdate();
+            $p = $p->first();
+            $balance = $p->project_balance;
+            if ($balance > 0) {
+                // clear the project balance
+                app('db')->table('projects')->update(['project_balance' => '0']);
+                app('db')->table('users')->increment('balance', $balance);
+                return $response = redirect()->back()->with('status', 'Successfully transferred project balance to your balance');
+            }
+            return $response = redirect()->back()->withErrors('Empty project balance');
+        });
+        return $response;
+
     }
     function verify(Project $project) {
         $this->authorize('verify', $project);

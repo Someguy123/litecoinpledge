@@ -16,7 +16,8 @@ class CreatePoolTable extends Migration
             $table->increments('id');
             $table->string('address', 50);
             $table->dateTime('used')->nullable();
-            $table->integer('user_id');
+            $table->integer('user_id')->default(0);
+            $table->integer('project_id')->default(0);
         });
     }
 

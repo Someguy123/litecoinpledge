@@ -5755,6 +5755,9 @@ button.close {
     width: 100px;
     height: 100px; }
 
+.actually-inline, form.actually-inline {
+  display: inline-block; }
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {

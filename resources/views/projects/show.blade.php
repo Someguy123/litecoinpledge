@@ -40,14 +40,14 @@
 
                         @if($project->verified == 0)
                                 @can('verify', $project)
-                                <form action="{{ url('/projects/'.$project->id.'/verify') }}" method="POST">
+                                <form action="{{ url('/projects/'.$project->id.'/verify') }}" class="actually-inline" method="POST">
                                     {!! csrf_field() !!}
                                     <button class="btn btn-success">Verify Project as Legitimate</button>
                                 </form>
                                 @endcan
                             @endif
                             @can('destroy', $project)
-                                <form action="{{ url('/projects/'.$project->id) }}" method="POST">
+                                <form action="{{ url('/projects/'.$project->id) }}" class="actually-inline" method="POST">
                                     {!! csrf_field() !!}
                                     {!! method_field('DELETE') !!}
 

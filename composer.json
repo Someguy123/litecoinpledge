@@ -10,7 +10,8 @@
         "barryvdh/laravel-ide-helper": "^2.1",
         "barryvdh/laravel-debugbar": "^2.1",
         "michelf/php-markdown": "^1.6",
-        "someguy123/bitcoin-connector": "dev-master"
+        "someguy123/bitcoin-connector": "1.*",
+        "doctrine/dbal": "~2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
