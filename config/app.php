@@ -157,6 +157,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        Someguy123\BitcoinConnector\BitcoinServiceProvider::class,
     ],
 
     /*

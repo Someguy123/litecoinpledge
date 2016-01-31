@@ -36,4 +36,8 @@ class User extends Authenticatable
     {
         return $this->group >= 5;
     }
+
+    function u_pledges() {
+        return $this->hasMany('App\UserPledge');
+    }
 }

@@ -14,6 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         // Commands\Inspire::class,
+        Commands\FillAddressPool::class,
+        Commands\ProcessTransactions::class,
     ];
 
     /**

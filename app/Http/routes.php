@@ -26,11 +26,23 @@ use Illuminate\Http\Request;
 |
 */
 
+function rand_str()
+{
+    return hash('sha256', substr(str_shuffle(sha1(rand(0, 999999999))), 0, rand(20, 45)));
+}
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('/', function () {
         $top_projects = App\Project::limit(6)->orderBy('total_pledged', 'desc')->get();
         return view('welcome', compact('top_projects'));
+    });
+
+    Route::group(['path' => '/account'], function() {
+        Route::get('account', function(Request $r) {
+            $user_pledges = $r->user()->u_pledges()->with('project')->get();
+            $user = auth()->user();
+            return view('account', compact('user_pledges', 'user'));
+        });
     });
 
     Route::get('projects/{project}/pledge', function(Request $r, \App\Project $project) {

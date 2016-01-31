@@ -66,6 +66,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="/account"><i class="fa fa-btn fa-user"></i>My Account</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
@@ -76,6 +77,16 @@
     </nav>
 
     @yield('content')
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <p class="text-muted">&copy; 2016 LitecoinPledge - Operated by <a href="http://someguy123.com">Someguy123</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e90be546b41e97d18a85f8de4cc9767e",
-    "content-hash": "4ed6ce80f9283ae92e4191558e5e2918",
+    "hash": "71f85e1bc089b62ef53e02c20b3f088c",
+    "content-hash": "3750f6c2d352518e54079cf937d89ef3",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -277,6 +277,42 @@
                 "string"
             ],
             "time": "2015-11-06 14:35:42"
+        },
+        {
+            "name": "fguillot/json-rpc",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fguillot/JsonRPC.git",
+                "reference": "0a77cd311783431c851e4c8eed33858663c17277"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fguillot/JsonRPC/zipball/0a77cd311783431c851e4c8eed33858663c17277",
+                "reference": "0a77cd311783431c851e4c8eed33858663c17277",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "JsonRPC": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frédéric Guillot"
+                }
+            ],
+            "description": "Simple Json-RPC client/server library that just works",
+            "homepage": "https://github.com/fguillot/JsonRPC",
+            "time": "2015-09-19 02:27:10"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -1172,6 +1208,43 @@
                 "shell"
             ],
             "time": "2015-11-12 16:18:56"
+        },
+        {
+            "name": "someguy123/bitcoin-connector",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Someguy123/BitcoinConnector.git",
+                "reference": "f295302be9cb4fa78ead57386fe9c7eef95e5515"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Someguy123/BitcoinConnector/zipball/f295302be9cb4fa78ead57386fe9c7eef95e5515",
+                "reference": "f295302be9cb4fa78ead57386fe9c7eef95e5515",
+                "shasum": ""
+            },
+            "require": {
+                "fguillot/json-rpc": "@stable",
+                "illuminate/auth": "5.2.*",
+                "illuminate/database": "5.2.x",
+                "illuminate/support": "5.2.x",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Someguy123\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Someguy123",
+                    "email": "info@someguy123.com"
+                }
+            ],
+            "description": "Bitcoin helpers for use in internal projects",
+            "time": "2016-01-31 11:55:18"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3284,7 +3357,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "someguy123/bitcoin-connector": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
