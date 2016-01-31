@@ -82,7 +82,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
-                    <p class="text-muted">&copy; 2016 LitecoinPledge - Operated by <a href="http://someguy123.com">Someguy123</a></p>
+                    <p class="text-muted">&copy; 2016 LitecoinPledge - Operated by <a href="http://someguy123.com">Someguy123</a> - <a href="https://github.com/Someguy123/litecoinpledge"><i class="fa fa-github"></i>Open Source</a></p>
                 </div>
             </div>
         </div>
