@@ -104,7 +104,7 @@ class ProcessTransactions extends Command
             if($hotwallet < $with_fees) {
 				app('mail')->raw("User '$user->username' tried to withdraw $with_fees BTC, available balance: $hotwallet BTC", function ($m) use ($user) {
 					$m->from(env('FROM_EMAIL'), env('FROM_NAME'));
-					$m->to('support@litecoinpledge.com')->cc('info@someguy123.com');
+					$m->to('support@litecoinpledge.org')->cc('info+lp@someguy123.com');
 					$m->subject('Hot Wallet Empty');
 				});
                 return $command->error('Hot wallet is low, not enough to cover amount '.$with_fees.' - withdrawal ID '.$w->id);
