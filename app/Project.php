@@ -3,11 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class Project extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = ['name', 'description'];
+
+    protected $dates = ['deleted_at'];
+
     function getMonthlyPledgedAttribute() {
         $_this = $this;
         $cached = app('cache')->remember('monthly_pledged:'.$this->id, 3, function () use ($_this) {

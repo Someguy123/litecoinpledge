@@ -4,15 +4,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <h1 class="text-center">Create a Project</h1>
-                @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                @include('partials.status')
 
                 <form action="/projects" method="POST">
                     <div class="form-group">

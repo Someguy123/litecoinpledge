@@ -23,4 +23,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    function owns($relation) {
+        return $this->id == $relation->user_id;
+    }
+
+    function is_admin() {
+        return $this->group >= 10;
+    }
+
+    function is_mod()
+    {
+        return $this->group >= 5;
+    }
 }

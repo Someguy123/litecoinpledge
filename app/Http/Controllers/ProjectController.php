@@ -31,4 +31,15 @@ class ProjectController extends Controller
     function show(Project $project) {
         return view('projects.show', compact('project'));
     }
+    function destroy(Project $project) {
+        $this->authorize('destroy', $project);
+        $project->delete();
+        return redirect('/projects')->with('status', 'Project deleted');
+    }
+    function verify(Project $project) {
+        $this->authorize('verify', $project);
+        $project->verified = 1;
+        $project->save();
+        return redirect()->back()->with('status', 'Project has been verified.');
+    }
 }

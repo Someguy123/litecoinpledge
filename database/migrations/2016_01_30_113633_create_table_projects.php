@@ -15,6 +15,7 @@ class CreateTableProjects extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 255);
+            $table->string('ltc_address', 60);
             $table->string('project_img')->default('/assets/img/default.png');
             $table->text('description');
             $table->decimal('total_pledged', 16, 8);

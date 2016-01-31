@@ -16,7 +16,7 @@
                         <div class="text-center">
                             <img src="{{ $p->project_img }}" alt="Project Image">
 
-                            <p>{{ $p->name }}</p>
+                            <p><a href="{{ url('/projects/'.$p->id) }}">{{ $p->name }}</a></p>
 
                             <p>Total: <strong>{{ number_format($p->total_pledged, 2) }}</strong> LTC</p>
 
