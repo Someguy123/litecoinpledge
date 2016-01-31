@@ -69,5 +69,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('projects/{project}', 'ProjectController@show')->where('project', '[0-9]+');
     Route::delete('projects/{project}', 'ProjectController@destroy')->where('project', '[0-9]+');
     Route::resource('projects', 'ProjectController');
+    Route::auth();
 
 });
