@@ -37,7 +37,7 @@ Route::group(['middleware' => ['web']], function () {
         return view('welcome', compact('top_projects'));
     });
 
-    Route::group(['prefix' => 'account'], function() {
+    Route::group(['prefix' => 'account', 'middleware' => 'auth'], function() {
         Route::get('/', function(Request $r) {
             $user_pledges = $r->user()->u_pledges()->with('project')->get();
             $user = auth()->user();
@@ -57,7 +57,7 @@ Route::group(['middleware' => ['web']], function () {
             return redirect()->back();
         }
         if(Auth::guest() && ($type == "monthly" || $type == "once")) {
-            return redirect()->guest(Route::current());
+            return redirect()->guest('login');
         }
         return view('projects.pledge', compact('project', 'type'));
     });

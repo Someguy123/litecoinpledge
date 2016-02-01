@@ -15,6 +15,11 @@ const TX_FEE = '0.001';
 class WalletController extends Controller
 {
 
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public static function generateAddress($entity, $project = false)
     {
         $id_name = $project ? "project_id" : "user_id";
