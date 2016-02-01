@@ -59,7 +59,7 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
-                        <li><a href="/wallet">Balance: <strong>{{ number_format(Auth::user()->balance, 4) }}</strong></a></li>
+                        <li><a href="/account">Balance: <strong>{{ number_format(Auth::user()->balance, 4) }}</strong></a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
