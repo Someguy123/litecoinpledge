@@ -20,7 +20,6 @@
                                 <pre>{{ $user->ltc_address }}</pre>
                             @endif
                             <h4>Withdraw</h4>
-
                             <form action="/wallet/withdraw" method="POST">
                                 {{ csrf_field() }}
                                 <div class="form-group">
@@ -36,6 +35,10 @@
                                     </div>
                                 </div>
                             </form>
+                            <small>0.001 fee will be taken from the amount you send to cover network fees</small>
+                            <br/>
+                            <small style="color:red">Note: We send an email to confirm all withdrawals for your security.</small>
+
                         </div>
                     </div>
                 </div>
