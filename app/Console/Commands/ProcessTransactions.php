@@ -183,6 +183,7 @@ class ProcessTransactions extends Command
             } else if ($tran->project_id > 0) {
                 $p = $tran->project;
                 $p->increment('project_balance', $t['amount']);
+                $p->increment('total_pledged', $t['amount']);
                 $this->info("Incremented project '$p->id' balance by $tran->amount");
                 $p->save();
             } else {
