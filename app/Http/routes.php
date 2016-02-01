@@ -36,6 +36,8 @@ Route::group(['middleware' => ['web']], function () {
         $top_projects = App\Project::limit(6)->orderBy('total_pledged', 'desc')->get();
         return view('welcome', compact('top_projects'));
     });
+    
+    Route::get('/about', function() { return view('about'); });
 
     Route::group(['prefix' => 'account', 'middleware' => 'auth'], function() {
         Route::get('/', function(Request $r) {
