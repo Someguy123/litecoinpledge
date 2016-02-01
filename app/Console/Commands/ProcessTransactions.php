@@ -1,6 +1,7 @@
 <?php
 namespace App\Console\Commands;
 
+use App\Pledge;
 use App\Project;
 use Illuminate\Console\Command;
 use App\Transaction;
@@ -186,6 +187,13 @@ class ProcessTransactions extends Command
                 $p->increment('total_pledged', $t['amount']);
                 $this->info("Incremented project '$p->id' balance by $tran->amount");
                 $p->save();
+                // track anonymous pledges
+                $pledge = new Pledge();
+                $pledge->amount = $t['amount'];
+                $pledge->user_id = 0;
+                $pledge->type = "anon";
+                $pledge->project_id = $p->id;
+                $pledge->save();
             } else {
                 return false;
             }
