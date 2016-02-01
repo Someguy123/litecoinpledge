@@ -6,6 +6,7 @@ use App\Project;
 use Illuminate\Console\Command;
 use App\Transaction;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class ProcessTransactions extends Command
 {
@@ -178,15 +179,13 @@ class ProcessTransactions extends Command
         if ($t['confirmations'] > 0) {
             if($tran->user_id > 0) {
                 $u = $tran->user;
-                $u->increment('balance', $t['amount']);
-                $u->save();
+                DB::table('users')->where('user_id', $u->id)->increment('balance', $t['amount']);
                 $this->info("Incremented user '$u->username' balance by $tran->amount");
             } else if ($tran->project_id > 0) {
                 $p = $tran->project;
-                $p->increment('project_balance', $t['amount']);
-                $p->increment('total_pledged', $t['amount']);
+                DB::table('projects')->where('project_id', $p->id)->increment('project_balance', $t['amount']);
+                DB::table('projects')->where('project_id', $p->id)->increment('total_pledged', $t['amount']);
                 $this->info("Incremented project '$p->id' balance by $tran->amount");
-                $p->save();
                 // track anonymous pledges
                 $pledge = new Pledge();
                 $pledge->amount = $t['amount'];
