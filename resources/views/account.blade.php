@@ -11,14 +11,27 @@
                         <div class="panel-heading">Wallet</div>
 
                         <div class="panel-body">
-                            <p>Balance: <strong>{{ $user->balance }}</strong> LTC</p>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-8">
+                                    <p>Balance: <strong>{{ $user->balance }}</strong> LTC</p>
 
-                            <p>Deposit Address: </p>
-                            @if($user->ltc_address == "")
-                                <a href="{{ url('/wallet/generate') }}">Generate Address</a>
-                            @else
-                                <pre>{{ $user->ltc_address }}</pre>
-                            @endif
+                                    <p>Deposit Address: </p>
+                                    @if($user->ltc_address == "")
+                                        <a href="{{ url('/wallet/generate') }}">Generate Address</a>
+                                    @else
+                                        <pre>{{ $user->ltc_address }}</pre>
+                                    @endif
+                                    
+                                </div>
+                                <div class="col-xs-12 col-md-4">
+                                    @unless($user->ltc_address == "")                                    
+                                        <div class="text-center">
+                                            <img style="max-width:200px;width:100%" src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=litecoin:{{ $user->ltc_address }}&choe=UTF-8" alt="QR Code">
+                                        </div>
+                                    @endunless
+                                </div>
+                            </div>
+                            
                             <h4>Withdraw</h4>
                             <form action="/wallet/withdraw" method="POST">
                                 {{ csrf_field() }}

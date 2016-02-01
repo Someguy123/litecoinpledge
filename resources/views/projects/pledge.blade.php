@@ -34,6 +34,9 @@
                                 <h4>Anonymous (One Time)</h4>
                                 <p>Be aware that sending anonymously means there will be no link to your account, as this is a shared address for the project.</p>
                                 <p>Please send any amount of LTC to the following address:</p>
+                                <div class="text-center">
+                                    <img src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=litecoin:{{ $project->ltc_address }}&choe=UTF-8" alt="QR Code">
+                                </div>
                                 <pre>{{ $project->ltc_address }}</pre>
                             @endif
                         </form>
