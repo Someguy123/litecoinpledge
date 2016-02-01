@@ -179,12 +179,12 @@ class ProcessTransactions extends Command
         if ($t['confirmations'] > 0) {
             if($tran->user_id > 0) {
                 $u = $tran->user;
-                DB::table('users')->where('user_id', $u->id)->increment('balance', $t['amount']);
+                DB::table('users')->where('id', $u->id)->increment('balance', $t['amount']);
                 $this->info("Incremented user '$u->username' balance by $tran->amount");
             } else if ($tran->project_id > 0) {
                 $p = $tran->project;
-                DB::table('projects')->where('project_id', $p->id)->increment('project_balance', $t['amount']);
-                DB::table('projects')->where('project_id', $p->id)->increment('total_pledged', $t['amount']);
+                DB::table('projects')->where('id', $p->id)->increment('project_balance', $t['amount']);
+                DB::table('projects')->where('id', $p->id)->increment('total_pledged', $t['amount']);
                 $this->info("Incremented project '$p->id' balance by $tran->amount");
                 // track anonymous pledges
                 $pledge = new Pledge();
