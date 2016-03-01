@@ -93,8 +93,7 @@ class ProcessTransactions extends Command
                 );
                 $w->status = 'reversed';
                 $w->save();
-                $user->increment('balance', $w->amount);
-                $user->save();
+                DB::table('users')->where('id', $user->id)->increment('balance', $w->amount);
                 return null;
             }
             // if everything is fine, then we send it through Bitcoin and put

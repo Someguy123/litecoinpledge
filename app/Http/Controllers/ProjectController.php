@@ -49,8 +49,8 @@ class ProjectController extends Controller
             $balance = $p->project_balance;
             if ($balance > 0) {
                 // clear the project balance
-                app('db')->table('projects')->update(['project_balance' => '0']);
-                app('db')->table('users')->increment('balance', $balance);
+                app('db')->table('projects')->where('id', $project->id)->update(['project_balance' => '0']);
+                app('db')->table('users')->where('id', $r->user()->id)->increment('balance', $balance);
                 return $response = redirect()->back()->with('status', 'Successfully transferred project balance to your balance');
             }
             return $response = redirect()->back()->withErrors('Empty project balance');

@@ -58,10 +58,10 @@ class WalletController extends Controller
             $amount = bcmul('1', $request->input('amount')); // truncate extra decimals
             $u = app('db')->table('users')->where('id', $request->user()->id)->lockForUpdate();
             $balance = $u->first()->balance;
-            if($amount == 0) {
+            if($amount <= 0) {
                 return $response = redirect()->back()->withErrors("You can't withdraw 0");
             }
-            if($amount == TX_FEE) {
+            if(bccomp($amount, bcadd(TX_FEE, 0.00000001)) < 0) {
                 return $response = redirect()->back()->withErrors("Amount is too small for TX fee of " . TX_FEE);
             }
             if (bccomp($balance, bcsub($amount, TX_FEE)) >= 0) {
@@ -111,14 +111,16 @@ class WalletController extends Controller
 
     public function cancel(Request $request, $key)
     {
-        $t = Transaction::where('confirmation_key', $key)->firstOrFail();
-        if ($t->status == 'confirm') {
-            $t->status = 'reversed';
-            $t->save();
-            $t->user->increment('balance', $t->amount);
-            $t->user->save();
-            return "Your withdrawal has been aborted. You may need to refresh to see your coins.";
-        }
-        return "Transaction not awaiting confirmation, locked by admin, or already completed.";
+        app('db')->transaction(function() use($request, $key, &$response) {
+            $t = Transaction::where('confirmation_key', $key)->firstOrFail();
+            if ($t->status == 'confirm') {
+                $t->status = 'reversed';
+                $t->save();
+                app('db')->table('users')->where('id', $t->user->id)->increment('balance', $t->amount);
+                return $response = "Your withdrawal has been aborted. You may need to refresh to see your coins.";
+            }
+            return $response = "Transaction not awaiting confirmation, locked by admin, or already completed.";
+        });
+        return $response;
     }
 }
