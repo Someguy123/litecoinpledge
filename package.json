@@ -5,6 +5,12 @@
   },
   "dependencies": {
     "laravel-elixir": "^4.0.0",
-    "bootstrap-sass": "^3.0.0"
-  }
+    "bootstrap-sass": "^3.0.0",
+    "snyk": "^1.192.3"
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
